@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
-    private Collectible[] inventoryCollectibles = new Collectible[6];
     [SerializeField] private Slot[] inventorySlots = new Slot[6];
     private int selectedIndex = 0;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private PopupText inventoryFullPopup;
 
     public bool TryToStore(Collectible newCollectible)
     {
@@ -35,7 +29,8 @@ public class InventoryManager : MonoBehaviour
             return true;
         }
 
-        return false; //Show inventory full message
+        inventoryFullPopup.ShowPopup();
+        return false;
     }
 
     public void SetSelectedSlot(int index)
@@ -43,6 +38,11 @@ public class InventoryManager : MonoBehaviour
         inventorySlots[selectedIndex].SetIsSelected(false);
         selectedIndex = index;
         inventorySlots[selectedIndex].SetIsSelected(true);
+    }
+
+    public Collectible GetSelectedCollectible()
+    {
+        return inventorySlots[selectedIndex].GetCollectible();
     }
 
     public bool TryToDrop()

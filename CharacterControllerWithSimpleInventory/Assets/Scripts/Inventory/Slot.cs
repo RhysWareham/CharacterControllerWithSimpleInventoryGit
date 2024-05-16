@@ -50,6 +50,11 @@ public class Slot : MonoBehaviour
         SetIsFilled(true);
     }
 
+    public Collectible GetCollectible()
+    {
+        return currentCollectible;
+    }
+
     public void RemoveCollectible()
     {
         currentCollectible = null;
