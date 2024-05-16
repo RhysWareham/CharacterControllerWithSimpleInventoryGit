@@ -92,7 +92,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void Flip(bool hasHorizontalSpeed)
     {
-        transform.localScale = new Vector2(Mathf.Sign(rb2d.velocity.x) * startingScaleX, 1);
+        if (hasHorizontalSpeed)
+        {
+            transform.localScale = new Vector2(Mathf.Sign(rb2d.velocity.x) * startingScaleX, 1);
+        }
     }
 
     private void MoveAction_performed(InputAction.CallbackContext obj)
